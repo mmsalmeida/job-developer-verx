@@ -2,7 +2,7 @@ package com.desafioverx.loginverx.dto;
 
 public class ClienteDTO {
 	
-	
+	private Long Id;
 	private String nome;
 	private String idade;
 	public String getNome() {
@@ -16,5 +16,11 @@ public class ClienteDTO {
 	}
 	public void setIdade(String idade) {
 		this.idade = idade;
+	}
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
 	}
 }

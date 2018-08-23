@@ -4,35 +4,27 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.Enumeration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.desafioverx.loginverx.model.Cliente;
-import com.desafioverx.loginverx.repository.ClienteRepository;
+
+
 
 @Service
 public class ClienteService {
-	@Autowired
-	private ClienteRepository clienteRepository;
+	
 	
 	
 	@PersistenceContext
 	private EntityManager em;
-	
 
-	
 	@Transactional
 	public boolean insertCliente(String nome,String idade) {
 		
@@ -46,12 +38,45 @@ public class ClienteService {
 		em.persist(cliente);
 			return true;			
 	}
+
+	
+	@Transactional
+	public boolean alteraCliente(Long Id,String nome,String idade) {
+		
+		Cliente cliente = new Cliente();
+		
+		cliente.setId(Id);
+		cliente.setNome(nome);
+		cliente.setIdade(idade);
+		
+		
+		em.merge(cliente);
+			return true;			
+	}	
 	
 
+	@Transactional
+	public String removerCliente(Long Id) {
+		
+		Cliente cliente = new Cliente();
+		
+		cliente.setId(Id);
+		em.remove(Id);
+			return "teste remoção";			
+	}
+	
+		
+	public String pegaIP3() throws IOException {
+		URL url = new URL("http://checkip.amazonaws.com/");	
+		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+		System.out.println("testenew...:"+br.readLine().toString());	
+		return br.readLine().toString();
+	}
 
-	public void pegaIP2() {
-      	//String urlString = "https://www.whatismyip.org";
-      	String urlString ="https://www.whatismyip.org";
+
+	
+	public String pegaIP2() throws IOException {				
+      	String urlString ="https://ipvigilante.com/187.37.203.104";     	      	
      	System.setProperty("http.proxyHost", "ip.do.seu.proxy");
     	System.setProperty("http.proxyPort", "porta_do_proxy");   	
 			try{
@@ -61,7 +86,7 @@ public class ClienteService {
 				con.setRequestProperty("Request-Method",    "GET");
 				// seta a variavel para ler o resultado
 				con.setDoInput(true);
-				con.setDoOutput(false);
+				con.setDoOutput(false); 
 				// abre a conexão pra input
 				BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 				// le ate o final
@@ -84,7 +109,9 @@ public class ClienteService {
 			}catch(IOException ioe){
 				ioe.printStackTrace();
 			}
-
-	} 
+		return "teste";
+	}
+	
+	
 	   
 }

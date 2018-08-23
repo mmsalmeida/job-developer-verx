@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LoginVerxApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Alô MUndo!!!!");
 		SpringApplication.run(LoginVerxApplication.class, args);
 		
 	}

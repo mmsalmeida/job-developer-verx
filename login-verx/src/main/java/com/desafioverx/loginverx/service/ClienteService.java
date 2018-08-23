@@ -76,7 +76,7 @@ public class ClienteService {
 
 	
 	public String pegaIP2() throws IOException {				
-      	String urlString ="https://ipvigilante.com/187.37.203.104";     	      	
+      	String urlString ="https://ipvigilante.com/8.8.8.8";     	      	
      	System.setProperty("http.proxyHost", "ip.do.seu.proxy");
     	System.setProperty("http.proxyPort", "porta_do_proxy");   	
 			try{

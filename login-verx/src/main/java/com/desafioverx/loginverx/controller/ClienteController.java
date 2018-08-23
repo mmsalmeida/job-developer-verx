@@ -69,7 +69,6 @@ public class ClienteController {
 		long envio =	Long.parseLong(Id);
 		clienteDTO.setId(envio);
 		if (clienteReposityory.findById(envio).isPresent()) {
-			System.out.println("teste de verificação de dados");
 			System.out.println("Id:"+clienteDTO.getId());
 			System.out.println("cliente:"+clienteDTO.getNome());
 			System.out.println("idade:"+clienteDTO.getIdade());

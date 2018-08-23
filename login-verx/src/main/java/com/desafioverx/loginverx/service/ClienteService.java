@@ -95,7 +95,7 @@ public class ClienteService {
 				while (null != ((s = br.readLine()))) {
 					newData.append(s);
 				}
-				br.close();
+				br.close(); 
 				// imprime o codigo resultante
 				System.out.println(new String(newData));
 				// imprime o numero do resultado

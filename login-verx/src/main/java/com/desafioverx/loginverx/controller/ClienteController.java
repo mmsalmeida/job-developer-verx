@@ -57,7 +57,7 @@ public class ClienteController {
 		clienteService.pegaIP2();
 		return "Cliente salvo com sucesso!";
 	}
-	
+	 
 	
 	@GetMapping(value="/listacliente")
 	public List<Cliente> listarCliente() {
